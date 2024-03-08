@@ -1,0 +1,12 @@
+{
+    "display_name": "Grimoire",
+    "loading_order": 5,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "",
+    "author": "Krakenos",
+    "version": "1.0.0",
+    "homePage": "https://github.com/Krakenos/Grimoire-ST-Extension",
+    "auto_update": true
+}
