@@ -1,0 +1,84 @@
+<div id="grimoire_settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>Grimoire</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+
+            <label class="checkbox_label" for="grimoire_enabled">
+                <input id="grimoire_enabled" type="checkbox" />
+                <span>Enable Grimoire memory injection</span>
+            </label>
+
+            <hr>
+
+            <label for="grimoire_url">Grimoire URL</label>
+            <input id="grimoire_url" class="text_pole" type="text" placeholder="http://127.0.0.1:5005" />
+
+            <label for="grimoire_api_key">API Key <small>(leave blank if auth is disabled)</small></label>
+            <input id="grimoire_api_key" class="text_pole" type="password" placeholder="Bearer token (optional)" />
+
+            <hr>
+
+            <label for="grimoire_max_tokens">
+                Max content tokens
+                <small>(token budget for returned memories; 0 = unlimited)</small>
+            </label>
+            <input id="grimoire_max_tokens" class="text_pole" type="number" min="0" step="100" />
+
+            <label for="grimoire_message_count">
+                Recent messages to send
+                <small>(how many chat messages to include in the retrieval query)</small>
+            </label>
+            <input id="grimoire_message_count" class="text_pole" type="number" min="1" max="100" step="1" />
+
+            <label for="grimoire_external_user_id">
+                External user ID
+                <small>(stable identifier for your user in Grimoire; defaults to your persona name if blank)</small>
+            </label>
+            <input id="grimoire_external_user_id" class="text_pole" type="text" placeholder="Leave blank to use persona name" />
+
+            <label class="checkbox_label" for="grimoire_send_character" title="Include the active character name, description, and creator notes in the retrieval request.">
+                <input id="grimoire_send_character" type="checkbox" />
+                <span>Send character card with retrieval request</span>
+            </label>
+
+            <label class="checkbox_label" for="grimoire_send_lorebook" title="Include active character book and global World Info entries in the retrieval request.">
+                <input id="grimoire_send_lorebook" type="checkbox" />
+                <span>Send lorebook entries with retrieval request</span>
+            </label>
+
+            <hr>
+
+            <label>Injection position</label>
+            <label class="checkbox_label" title="Include the injected Grimoire memories in World Info scanning.">
+                <input id="grimoire_scan" type="checkbox" />
+                <span>Include in World Info scanning</span>
+            </label>
+
+            <div class="radio_group">
+                <label>
+                    <input type="radio" name="grimoire_position" value="2" />
+                    <span>Before Main Prompt / Story String</span>
+                </label>
+                <label>
+                    <input type="radio" name="grimoire_position" value="0" />
+                    <span>After Main Prompt / Story String</span>
+                </label>
+                <label class="flex-container alignItemsCenter" title="Injects memories at the given depth into the chat history. Depth 0 = after the last message.">
+                    <input type="radio" name="grimoire_position" value="1" />
+                    <span>In-chat @ Depth</span>
+                    <input id="grimoire_depth" class="text_pole widthUnset" type="number" min="0" max="9999" />
+                    <span>as</span>
+                    <select id="grimoire_role" class="text_pole widthNatural">
+                        <option value="0">System</option>
+                        <option value="1">User</option>
+                        <option value="2">Assistant</option>
+                    </select>
+                </label>
+            </div>
+
+        </div>
+    </div>
+</div>
