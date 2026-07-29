@@ -23,6 +23,7 @@ const defaultSettings = {
     externalUserId: '',
     sendCharacter: true,
     sendLorebook: true,
+    includeNames: true,
 };
 
 function loadSettings() {
@@ -51,6 +52,7 @@ function applySettingsToUI() {
     $('#grimoire_external_user_id').val(s.externalUserId);
     $('#grimoire_send_character').prop('checked', s.sendCharacter);
     $('#grimoire_send_lorebook').prop('checked', s.sendLorebook);
+    $('#grimoire_include_names').prop('checked', s.includeNames);
 }
 
 /**
@@ -139,7 +141,7 @@ globalThis.grimoire_intercept = async function(chat, _contextSize, _abort, type)
         const chatData = {
             external_chat_id: chatId,
             external_user_id: s.externalUserId || ctx.name1 || null,
-            include_names: true,
+            include_names: s.includeNames,
             max_tokens: s.maxTokens || null,
             messages: recentMessages,
         };
@@ -248,6 +250,10 @@ async function init() {
     });
     $('#grimoire_send_lorebook').on('change', () => {
         extension_settings[MODULE_NAME].sendLorebook = !!$('#grimoire_send_lorebook').prop('checked');
+        saveSettingsDebounced();
+    });
+    $('#grimoire_include_names').on('change', () => {
+        extension_settings[MODULE_NAME].includeNames = !!$('#grimoire_include_names').prop('checked');
         saveSettingsDebounced();
     });
 }
